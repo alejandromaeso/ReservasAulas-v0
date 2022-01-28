@@ -32,7 +32,7 @@ public class Permanencia {
 		return dia;
 	}
 
-	public void setDia(LocalDate dia) {
+	private void setDia(LocalDate dia) {
 		if(dia == null) {
 			throw new IllegalArgumentException("El día de una permanencia no puede ser nulo.");
 		}
@@ -43,7 +43,7 @@ public class Permanencia {
 		return tramo;
 	}
 
-	public void setTramo(Tramo tramo) {
+	private void setTramo(Tramo tramo) {
 		if(tramo == null) {
 			throw new IllegalArgumentException("El tramo de una permanencia no puede ser nulo.");
 		}
