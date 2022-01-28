@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Aula {
 	
-	String nombre;
+	private String nombre;
 
 	public Aula(String nombre) {
 		setNombre(nombre);
