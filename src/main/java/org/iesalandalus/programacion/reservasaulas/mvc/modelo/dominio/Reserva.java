@@ -8,7 +8,7 @@ public class Reserva {
 	Aula aula;
 	Permanencia permanencia;
 	
-	Reserva(Profesor profesor, Aula aula, Permanencia permanencia){
+	public Reserva(Profesor profesor, Aula aula, Permanencia permanencia){
 		if(profesor == null) {
 			throw new NullPointerException("ERROR: La reserva debe estar a nombre de un profesor.");
 		}
@@ -22,8 +22,8 @@ public class Reserva {
 		setAula(aula);
 		setPermanencia(permanencia);
 	}
-	
-	Reserva(Reserva copiaReserva){
+
+	public Reserva(Reserva copiaReserva){
 		if(copiaReserva == null) {
 			throw new NullPointerException("ERROR: No se puede copiar una reserva nula.");
 		}
