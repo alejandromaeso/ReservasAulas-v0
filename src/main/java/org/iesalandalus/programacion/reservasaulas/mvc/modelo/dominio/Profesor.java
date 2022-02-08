@@ -23,7 +23,7 @@ public class Profesor {
 	
 	public Profesor(Profesor copiaProfesor) {
 		if(copiaProfesor == null) {
-			throw new IllegalArgumentException("No se puede copiar un profesor nulo.");
+			throw new NullPointerException("ERROR: No se puede copiar un profesor nulo.");
 		}
 		setNombre(copiaProfesor.getNombre());
 		setCorreo(copiaProfesor.getCorreo());
@@ -36,10 +36,10 @@ public class Profesor {
 
 	private void setNombre(String nombre) {
 		if(nombre == null) {
-			throw new IllegalArgumentException("El nombre del profesor no puede ser nulo.");
+			throw new NullPointerException("ERROR: El nombre del profesor no puede ser nulo.");
 		}
 		if(nombre == "") {
-			throw new IllegalArgumentException("El nombre del profesor no puede estar vacío.");
+			throw new IllegalArgumentException("ERROR: El nombre del profesor no puede estar vacío.");
 		}
 		this.nombre = nombre;
 	}
@@ -50,10 +50,10 @@ public class Profesor {
 
 	public void setCorreo(String correo) {
 		if(correo == null) {
-			throw new IllegalArgumentException("El correo del profesor no puede ser nulo.");
+			throw new NullPointerException("ERROR: El correo del profesor no puede ser nulo.");
 		}
 		if(correo == "" && !correo.matches(ER_CORREO)) {
-			throw new IllegalArgumentException("El correo del profesor no es válido.");
+			throw new IllegalArgumentException("ERROR: El correo del profesor no es válido.");
 		}
 		
 		this.correo = correo;
@@ -65,7 +65,7 @@ public class Profesor {
 
 	public void setTelefono(String telefono) {
 		if(telefono == "" && telefono.length() != 9 && !telefono.matches(ER_TELEFONO)) {
-			throw new IllegalArgumentException("El teléfono del profesor no es válido.");
+			throw new IllegalArgumentException("ERROR: El teléfono del profesor no es válido.");
 		}
 
 		this.telefono = telefono;
@@ -92,10 +92,10 @@ public class Profesor {
 	@Override
 	public String toString() {
 		if(telefono == null) {
-			return "[nombre=" + nombre + ", correo=" + correo +"]";
+			return "nombre=" + nombre + ", correo=" + correo ;
 		}
 		
-		return "[nombre=" + nombre + ", correo=" + correo + ", telefono=" + telefono + "]";
+		return "nombre=" + nombre + ", correo=" + correo + ", telefono=" + telefono;
 	}
 	
 	

@@ -10,13 +10,13 @@ public class Reserva {
 	
 	Reserva(Profesor profesor, Aula aula, Permanencia permanencia){
 		if(profesor == null) {
-			throw new IllegalArgumentException("La reserva debe estar a nombre de un profesor.");
+			throw new NullPointerException("ERROR: La reserva debe estar a nombre de un profesor.");
 		}
 		if(aula == null) {
-			throw new IllegalArgumentException("La reserva debe ser para un aula concreta.");
+			throw new NullPointerException("ERROR: La reserva debe ser para un aula concreta.");
 		}
 		if(permanencia == null) {
-			throw new IllegalArgumentException("La reserva se debe hacer para una permanencia concreta.");
+			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
 		}
 		setProfesor(profesor);
 		setAula(aula);
@@ -25,7 +25,7 @@ public class Reserva {
 	
 	Reserva(Reserva copiaReserva){
 		if(copiaReserva == null) {
-			throw new IllegalArgumentException("No se puede copiar una reserva nula.");
+			throw new NullPointerException("ERROR: No se puede copiar una reserva nula.");
 		}
 		setProfesor(copiaReserva.getProfesor());
 		setAula(copiaReserva.getAula());
@@ -70,15 +70,12 @@ public class Reserva {
 		if (getClass() != obj.getClass())
 			return false;
 		Reserva other = (Reserva) obj;
-		return Objects.equals(aula, other.aula) && Objects.equals(permanencia, other.permanencia);
-				//&& Objects.equals(profesor, other.profesor);
-
-		//REVISAR EQUALS
+		return Objects.equals(aula, other.aula) && Objects.equals(permanencia, other.permanencia);				
 	}
 
 	@Override
 	public String toString() {
-		return "[profesor=" + profesor + ", aula=" + aula + ", permanencia=" + permanencia + "]";
+		return "Profesor=" + profesor + ", aula=" + aula + ", permanencia=" + permanencia;
 	}
 	
 	
