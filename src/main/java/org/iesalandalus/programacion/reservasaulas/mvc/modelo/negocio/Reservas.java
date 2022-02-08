@@ -12,7 +12,7 @@ public class Reservas {
 	int capacidad, tamano;
 	Reserva[] coleccionReservas;
 	
-	Reservas(int numeroReservas){
+	public Reservas(int numeroReservas){
 		if(numeroReservas <= 0) {
 			throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
 		}

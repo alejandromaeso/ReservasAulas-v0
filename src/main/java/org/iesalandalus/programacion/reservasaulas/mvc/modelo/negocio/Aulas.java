@@ -9,7 +9,7 @@ public class Aulas {
 	private int capacidad, tamano;
 	Aula[] coleccionAulas;
 	
-	Aulas(int numeroAulas){
+	public Aulas(int numeroAulas){
 		if(numeroAulas <=0) {
 			throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
 		}
