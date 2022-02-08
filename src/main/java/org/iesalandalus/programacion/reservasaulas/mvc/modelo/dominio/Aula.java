@@ -52,8 +52,5 @@ public class Aula {
 	public String toString() {
 		return "nombre Aula=" + nombre;
 	}
-	
-	
-	
 
 }
