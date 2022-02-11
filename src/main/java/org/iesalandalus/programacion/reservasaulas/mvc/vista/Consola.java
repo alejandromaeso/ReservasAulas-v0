@@ -12,9 +12,11 @@ import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
 
-	private final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/M/yyyy");
+	private final static DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/M/yyyy");
 
 	public Consola() {
+		
+		//No se le pasa ningún valor debido a que es una clase estática
 
 	}
 
@@ -95,7 +97,9 @@ public class Consola {
 	}
 
 	public static LocalDate leerDia() {
-		return null;
+		
+		System.out.println("Por favor, intrdozuca una fecha: ");
+		return LocalDate.parse(Entrada.cadena(), FORMATO_DIA);
 
 	}
 }
