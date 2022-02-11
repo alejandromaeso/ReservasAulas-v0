@@ -119,4 +119,5 @@ public enum Opcion {
 	public String toString() {
 		return String.format("%d.- %s", ordinal(), mensajeAMostrar);
 	}
+
 }
