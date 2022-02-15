@@ -1,8 +1,10 @@
+package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
+import javax.naming.OperationNotSupportedException;
 
 public enum Opcion {
 	INSERTAR_AULA("Insertar aula") {
-		public void ejecutar() {
+		public void ejecutar() throws OperationNotSupportedException {
 			vista.insertarAula();
 		}
 	},
@@ -12,7 +14,7 @@ public enum Opcion {
 		}
 	},
 	BORRAR_AULA("Borrar aula") {
-		public void ejecutar() {
+		public void ejecutar() throws OperationNotSupportedException {
 			vista.borrarAula();
 		}
 	},
@@ -22,7 +24,7 @@ public enum Opcion {
 		}
 	},
 	INSERTAR_PROFESOR("Insertar profesor") {
-		public void ejecutar() {
+		public void ejecutar() throws OperationNotSupportedException {
 			vista.insertarProfesor();
 		}
 	},
@@ -32,7 +34,7 @@ public enum Opcion {
 		}
 	},
 	BORRAR_PROFESOR("Borrar profesor") {
-		public void ejecutar() {
+		public void ejecutar() throws OperationNotSupportedException {
 			vista.borrarProfesor();
 		}
 	},
@@ -42,13 +44,13 @@ public enum Opcion {
 		}
 	},
 	INSERTAR_RESERVA("Inserta reserva") {
-		public void ejecutar() {
-			vista.buscarReserva();
+		public void ejecutar() throws OperationNotSupportedException {
+			vista.realizarReserva();
 		}
 	},
 	BORRAR_RESERVA("Borrar reserva") {
-		public void ejecutar() {
-			vista.borrarReserva();
+		public void ejecutar() throws OperationNotSupportedException {
+			vista.anularReserva();
 		}
 	},
 	LISTAR_RESERVAS("Listar reservas") {
@@ -58,17 +60,17 @@ public enum Opcion {
 	},
 	LISTAR_RESERVAS_AULA("Listar reservas aula") {
 		public void ejecutar() {
-			vista.listarReservasAulas();
+			vista.listarReservasAula();
 		}
 	},
 	LISTAR_RESERVAS_PROFESOR("Listar reservas profesor") {
 		public void ejecutar() {
-			vista.listarReservasProfesor();
+			vista.listarReservaProfesor();
 		}
 	},
 	LISTAR_RESERVAS_PERMANENCIA("Listar reservas permanencia") {
 		public void ejecutar() {
-			vista.listarReservasPermanencia();
+			vista.listarReservaPermanencia();
 		}
 	},
 	
@@ -90,7 +92,7 @@ public enum Opcion {
 		this.mensajeAMostrar = mensajeAMostrar;
 	}
 	
-	public abstract void ejecutar();
+	public abstract void ejecutar() throws OperationNotSupportedException;
 	
 	protected static void setVista(Vista vista) {
 		if (vista == null) {

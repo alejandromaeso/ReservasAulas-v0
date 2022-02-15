@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
@@ -9,9 +11,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 
 public class Vista {
 
-	private final String ERROR = "";
+	/* private final String ERROR = "";
 	private final String NOMBRE_VALIDO = "";
-	private final String CORREO_VALIDO = "";
+	private final String CORREO_VALIDO = ""; */
 
 	Controlador controlador;
 
@@ -24,7 +26,7 @@ public class Vista {
 		this.controlador = controlador;
 	}
 
-	public void comenzar() {
+	public void comenzar() throws OperationNotSupportedException {
 		int ordinalOpcion;
 		do {
 			Consola.mostrarMenu();
@@ -40,13 +42,13 @@ public class Vista {
 		controlador.terminar();
 	}
 
-	public void insertarAula() {
+	public void insertarAula() throws OperationNotSupportedException {
 
 		controlador.insertarAula(Consola.leerAula());
 
 	}
 
-	public void borrarAula() {
+	public void borrarAula() throws OperationNotSupportedException {
 
 		controlador.borrarAula(Consola.leerAula());
 
@@ -66,18 +68,20 @@ public class Vista {
 		}
 
 		/*
+		 * OTRA FORMA DE REPRESENTAR EL BUCLE:
+		 * 
 		 * for(int i=0; i < representar.length; i++) {
 		 * 
 		 * System.out.println(representar[i]); }
 		 */
 	}
 
-	public void insertarProfesor() {
+	public void insertarProfesor() throws OperationNotSupportedException {
 
 		controlador.insertarProfesor(Consola.leerProfesor());
 	}
 
-	public void borrarProfesor() {
+	public void borrarProfesor() throws OperationNotSupportedException {
 
 		controlador.borrarProfesor(Consola.leerProfesor());
 	}
@@ -96,7 +100,7 @@ public class Vista {
 		}
 	}
 
-	public void realizarReserva() {
+	public void realizarReserva() throws OperationNotSupportedException {
 
 		controlador.realizarReserva(leerReserva(Consola.leerProfesor()));
 	}
@@ -108,7 +112,7 @@ public class Vista {
 
 	}
 
-	public void anularReserva() {
+	public void anularReserva() throws OperationNotSupportedException {
 
 		controlador.anularReserva(leerReserva(Consola.leerProfesor()));
 	}
@@ -159,7 +163,7 @@ public class Vista {
 		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
 		
 		if(controlador.consultarDisponibilidad(Consola.leerAula(), permanencia)) {
-			System.out.println("El aula esta´disponible.");
+			System.out.println("El aula está disponible.");
 		} else {
 			System.out.println("El aula ya está reservada.");
 		}
