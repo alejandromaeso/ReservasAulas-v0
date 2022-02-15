@@ -11,7 +11,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
-
+	
 	private final static DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/M/yyyy");
 
 	public Consola() {
@@ -24,9 +24,9 @@ public class Consola {
 
 		mostrarCabecera("Gestión de reservas de aulas");
 
-		/*for (Opcion opcion: Opcion.values()) {
+		for (Opcion opcion: Opcion.values()) {
 			System.out.println(opcion);
-		}*/
+		}
 	}
 
 	public static void mostrarCabecera(String cabecera) {
@@ -43,7 +43,7 @@ public class Consola {
 		do {
 			System.out.println("Elija una opción: ");
 			opcionElegida = Entrada.entero();
-		} while (opcionElegida < 0 || opcionElegida > 5);
+		} while (opcionElegida < 0 || opcionElegida > Opcion.values().length);
 		return opcionElegida;
 	}
 
@@ -64,17 +64,20 @@ public class Consola {
 
 	public static Profesor leerProfesor() {
 
-		String nombre, correo, telefono;
+		String nombre = null;
+		String correo = null; 
+		String telefono = null;
 		System.out.println("Por favor, introduzca el nombre del profesor: ");
 		nombre = leerNombreProfesor();
 		System.out.println("Por favor, introduzca el correo del profesor: ");
 		correo = leerNombreProfesor();
 		System.out.println("Por favor, introduzca el telefono del profesor: ");
 		telefono = leerNombreProfesor();
+		
 
 		Profesor profesor;
 
-		if (telefono == null || telefono.isEmpty()) {
+		if (telefono == null || telefono.isBlank()) {
 			profesor = new Profesor(nombre, correo);
 		} else {
 			profesor = new Profesor(nombre, correo, telefono);
@@ -90,10 +93,10 @@ public class Consola {
 
 	public static Tramo leerTramo() {
 
-		System.out.println("Por favor, introduzca el tramo:");
+		System.out.println("Por favor, introduzca el tramo (maNana o tarde):");
 		String tramoIntroducido = Entrada.cadena();
 		
-		return Tramo.valueOf(tramoIntroducido);
+		return Tramo.valueOf(tramoIntroducido.toUpperCase());
 	}
 
 	public static LocalDate leerDia() {

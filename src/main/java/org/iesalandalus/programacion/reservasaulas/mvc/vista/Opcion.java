@@ -94,7 +94,7 @@ public enum Opcion {
 	
 	public abstract void ejecutar() throws OperationNotSupportedException;
 	
-	protected static void setVista(Vista vista) {
+	public static void setVista(Vista vista) {
 		if (vista == null) {
 			throw new NullPointerException("ERROR: La vista no pueda ser nula.");
 		}

@@ -17,7 +17,8 @@ public class Profesor {
 	}
 	
 	public Profesor(String nombre, String correo, String telefono) {
-		this(nombre,correo);
+		setNombre(nombre);
+		setCorreo(correo);
 		setTelefono(telefono);
 	}
 	
@@ -38,7 +39,7 @@ public class Profesor {
 		if(nombre == null) {
 			throw new NullPointerException("ERROR: El nombre del profesor no puede ser nulo.");
 		}
-		if(nombre == "") {
+		if(nombre.isBlank()) {
 			throw new IllegalArgumentException("ERROR: El nombre del profesor no puede estar vacío.");
 		}
 		this.nombre = nombre;
@@ -52,7 +53,7 @@ public class Profesor {
 		if(correo == null) {
 			throw new NullPointerException("ERROR: El correo del profesor no puede ser nulo.");
 		}
-		if(correo == "" && !correo.matches(ER_CORREO)) {
+		if(correo.isBlank() || !correo.matches(ER_CORREO)) {
 			throw new IllegalArgumentException("ERROR: El correo del profesor no es válido.");
 		}
 		

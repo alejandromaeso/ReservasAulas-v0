@@ -3,11 +3,9 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 
 public class Vista {
 

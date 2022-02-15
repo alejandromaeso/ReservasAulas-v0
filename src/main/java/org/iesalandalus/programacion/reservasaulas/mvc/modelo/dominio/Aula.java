@@ -25,7 +25,7 @@ public class Aula {
 		if(nombre == null) {
 			throw new NullPointerException("ERROR: El nombre del aula no puede ser nulo.");
 		}
-		if(nombre == "") {
+		if(nombre.isBlank()) {
 			throw new IllegalArgumentException("ERROR: El nombre del aula no puede estar vacío.");
 		}
 		this.nombre = nombre;

@@ -27,8 +27,6 @@ public class Controlador {
 	}
 
 	public void terminar() {
-		
-		vista.salir();
 
 	}
 
