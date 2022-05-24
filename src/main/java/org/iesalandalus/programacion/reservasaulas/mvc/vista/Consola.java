@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -11,12 +12,12 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
-	
+
 	private final static DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/M/yyyy");
 
 	public Consola() {
-		
-		//No se le pasa ningún valor debido a que es una clase estática
+
+		// No se le pasa ningún valor debido a que es una clase estática
 
 	}
 
@@ -24,7 +25,7 @@ public class Consola {
 
 		mostrarCabecera("Gestión de reservas de aulas");
 
-		for (Opcion opcion: Opcion.values()) {
+		for (Opcion opcion : Opcion.values()) {
 			System.out.println(opcion);
 		}
 	}
@@ -65,7 +66,7 @@ public class Consola {
 	public static Profesor leerProfesor() {
 
 		String nombre = null;
-		String correo = null; 
+		String correo = null;
 		String telefono = null;
 		System.out.println("Por favor, introduzca el nombre del profesor: ");
 		nombre = leerNombreProfesor();
@@ -73,7 +74,6 @@ public class Consola {
 		correo = leerNombreProfesor();
 		System.out.println("Por favor, introduzca el telefono del profesor: ");
 		telefono = leerNombreProfesor();
-		
 
 		Profesor profesor;
 
@@ -95,14 +95,19 @@ public class Consola {
 
 		System.out.println("Por favor, introduzca el tramo (maNana o tarde):");
 		String tramoIntroducido = Entrada.cadena();
-		
+
 		return Tramo.valueOf(tramoIntroducido.toUpperCase());
 	}
 
 	public static LocalDate leerDia() {
-		
-		System.out.println("Por favor, intrdozuca una fecha: ");
-		return LocalDate.parse(Entrada.cadena(), FORMATO_DIA);
+
+		try {
+			System.out.println("Por favor, intrdozuca una fecha: ");
+			String fechaIntroducida = Entrada.cadena();
+			return LocalDate.parse(fechaIntroducida, FORMATO_DIA);
+		} catch (DateTimeParseException e) {
+			throw new IllegalArgumentException("Formato de fecha incorrecto: dd/MM/yyyy");
+		}
 
 	}
 }

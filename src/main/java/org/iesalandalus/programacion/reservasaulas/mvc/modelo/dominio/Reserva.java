@@ -33,27 +33,27 @@ public class Reserva {
 	}
 
 	public Profesor getProfesor() {
-		return profesor;
+		return new Profesor(profesor);
 	}
 
 	private void setProfesor(Profesor profesor) {
-		this.profesor = profesor;
+		this.profesor = new Profesor(profesor);
 	}
 
 	public Aula getAula() {
-		return aula;
+		return new Aula(aula);
 	}
 
 	private void setAula(Aula aula) {
-		this.aula = aula;
+		this.aula = new Aula(aula);
 	}
 
 	public Permanencia getPermanencia() {
-		return permanencia;
+		return new Permanencia(permanencia);
 	}
 
 	private void setPermanencia(Permanencia permanencia) {
-		this.permanencia = permanencia;
+		this.permanencia = new Permanencia(permanencia);
 	}
 
 	@Override

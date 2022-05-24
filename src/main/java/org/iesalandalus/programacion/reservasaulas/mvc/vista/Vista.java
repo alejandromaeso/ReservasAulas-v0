@@ -3,15 +3,17 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
 public class Vista {
 
-	/* private final String ERROR = "";
-	private final String NOMBRE_VALIDO = "";
-	private final String CORREO_VALIDO = ""; */
+	/*
+	 * private final String ERROR = ""; private final String NOMBRE_VALIDO = "";
+	 * private final String CORREO_VALIDO = "";
+	 */
 
 	Controlador controlador;
 
@@ -40,132 +42,277 @@ public class Vista {
 		controlador.terminar();
 	}
 
-	public void insertarAula() throws OperationNotSupportedException {
+	public void insertarAula() {
 
-		controlador.insertarAula(Consola.leerAula());
+		try {
+			controlador.insertarAula(Consola.leerAula());
+			System.out.println("El aula se ha insertado correctamente.");
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
-	public void borrarAula() throws OperationNotSupportedException {
+	public void borrarAula() {
 
-		controlador.borrarAula(Consola.leerAula());
-
+		try {
+			controlador.borrarAula(Consola.leerAula());
+			System.out.println("El aula se ha borrado correctamente.");
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void buscarAula() {
 
-		controlador.buscarAula(Consola.leerAula());
+		Consola.mostrarCabecera("Buscar aula existente: ");
+		Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
+		if (aulaBuscar == null) {
+			System.out.println("El aula introducida no existe.");
+		} else {
+			System.out.println("El aula introducida existe.");
+		}
 	}
 
 	public void listarAulas() {
 
+		Consola.mostrarCabecera("Listado de aulas existentes: ");
 		String[] representar = controlador.representarAulas();
 
-		for (String cadena : representar) {
-			System.out.println(cadena);
+		if (representar.length == 0) {
+			System.out.println("No hay aulas introducidas");
+		} else {
+			for (String cadena : representar) {
+				System.out.println(cadena);
+			}
 		}
 
-		/*
-		 * OTRA FORMA DE REPRESENTAR EL BUCLE:
-		 * 
-		 * for(int i=0; i < representar.length; i++) {
-		 * 
-		 * System.out.println(representar[i]); }
-		 */
 	}
 
-	public void insertarProfesor() throws OperationNotSupportedException {
+	public void insertarProfesor() {
 
-		controlador.insertarProfesor(Consola.leerProfesor());
+		try {
+			controlador.insertarProfesor(Consola.leerProfesor());
+			System.out.println("El profesor se ha insertado correctamente.");
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	public void borrarProfesor() throws OperationNotSupportedException {
+	public void borrarProfesor() {
 
-		controlador.borrarProfesor(Consola.leerProfesor());
+		try {
+			controlador.borrarProfesor(Consola.leerProfesor());
+			System.out.println("El profesor se ha borrado correctamente.");
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void buscarProfesor() {
 
-		controlador.buscarProfesor(Consola.leerProfesor());
+		Consola.mostrarCabecera("Buscar profesor existente: ");
+
+		Profesor profesorBuscar = controlador.buscarProfesor(Consola.leerProfesor());
+		if (profesorBuscar == null) {
+			System.out.println("El profesor introducido no existe.");
+		} else {
+			System.out.println("El profesor introducido existe.");
+		}
 	}
 
 	public void listarProfesores() {
 
+		Consola.mostrarCabecera("Listado de profesores existentes: ");
 		String[] representar = controlador.representarProfesores();
 
-		for (String cadena : representar) {
-			System.out.println(cadena);
+		if (representar.length == 0) {
+			System.out.println("No hay profesores introducidos");
+		} else {
+			for (String cadena : representar) {
+				System.out.println(cadena);
+			}
 		}
 	}
 
-	public void realizarReserva() throws OperationNotSupportedException {
+	public void realizarReserva() {
 
-		controlador.realizarReserva(leerReserva(Consola.leerProfesor()));
+		try {
+			Profesor profesorBuscar = controlador.buscarProfesor(Consola.leerProfesor());
+			if (profesorBuscar == null) {
+				throw new NullPointerException("El profesor introducido no existe.");
+			} else {
+				Reserva reserva = leerReserva(profesorBuscar);
+				if (reserva == null) {
+					throw new IllegalArgumentException("Error introducido en los datos de la reserva, compruébelos.");
+				}
+				controlador.realizarReserva(reserva);
+				System.out.println("Reserva realizada correctamente.");
+			}
+
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private Reserva leerReserva(Profesor profesor) {
 		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-		Reserva reserva = new Reserva(profesor, Consola.leerAula(), permanencia);
-		return reserva;
+		Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
+		Reserva reserva = null;
+		if (aulaBuscar == null) {
+			System.out.println("El aula introducida no existe.");
+		} else {
+			reserva = new Reserva(profesor, aulaBuscar, permanencia);
 
+		}
+		return reserva;
 	}
 
-	public void anularReserva() throws OperationNotSupportedException {
+	public void anularReserva() {
 
-		controlador.anularReserva(leerReserva(Consola.leerProfesor()));
+		try {
+			controlador.anularReserva(leerReserva(Consola.leerProfesor()));
+			System.out.println("Reserva anulada correctamente.");
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void listarReservas() {
-
+		Consola.mostrarCabecera("Listado de reservas existentes: ");
 		String[] representar = controlador.representarReservas();
 
-		for (String cadena: representar) {
+		for (String cadena : representar) {
 			System.out.println(cadena);
 		}
 	}
 
 	public void listarReservasAula() {
+		try {
 
-		Reserva[] arrayReservas = controlador.getReservasAula(Consola.leerAula());
+			Consola.mostrarCabecera("Listado de reservas existentes por aula: ");
+			Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
+			if (aulaBuscar == null) {
+				System.out.println("El aula introducida no existe.");
+			} else {
+				Reserva[] arrayReservas = controlador.getReservasAula(aulaBuscar);
+				for (Reserva reserva : arrayReservas) {
+					if (reserva == null) {
+						System.out.println("No hay reservas.");
+						break;
+					} else {
+						System.out.println(reserva.toString());
+						break;
+					}
 
-		for (Reserva reserva: arrayReservas) {
-			System.out.println(reserva.toString());
+				}
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
 
 	}
 
 	public void listarReservaProfesor() {
-		
-		Reserva[] arrayReservas = controlador.getReservasProfesor(Consola.leerProfesor());
+		try {
 
-		for (Reserva reserva: arrayReservas) {
-			System.out.println(reserva.toString());
+			Consola.mostrarCabecera("Listado de reservas existentes por profesor: ");
+			Profesor profesorBuscar = controlador.buscarProfesor(Consola.leerProfesor());
+			if (profesorBuscar == null) {
+				throw new NullPointerException("El profesor introducido no existe.");
+			} else {
+				Reserva[] arrayReservas = controlador.getReservasProfesor(profesorBuscar);
+				for (Reserva reserva : arrayReservas) {
+					if (reserva == null) {
+						System.out.println("No hay reservas.");
+						break;
+					} else {
+						System.out.println(reserva.toString());
+						break;
+					}
+
+				}
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
 
 	}
 
 	public void listarReservaPermanencia() {
+		try {
 
-		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-		
-		Reserva[] arrayReservas = 	controlador.getReservasPermanencia(permanencia);
-		
-		for (Reserva reserva: arrayReservas) {
-			System.out.println(reserva.toString());
+			Consola.mostrarCabecera("Listado de reservas existentes por permanencia: ");
+			Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
+
+			Reserva[] arrayReservas = controlador.getReservasPermanencia(permanencia);
+			for (Reserva reserva : arrayReservas) {
+				if (reserva == null) {
+					System.out.println("No hay reservas.");
+					break;
+				} else {
+					System.out.println(reserva.toString());
+					break;
+				}
+
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
 
 	}
 
 	public void consultarDisponibilidad() {
+		try {
 
-		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-		
-		if(controlador.consultarDisponibilidad(Consola.leerAula(), permanencia)) {
-			System.out.println("El aula está disponible.");
-		} else {
-			System.out.println("El aula ya está reservada.");
+			Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
+			Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
+			if (aulaBuscar == null) {
+				System.out.println("El aula introducida no existe.");
+			} else {
+				if (controlador.consultarDisponibilidad(aulaBuscar, permanencia)) {
+					System.out.println("El aula está disponible.");
+				} else {
+					System.out.println("El aula ya está reservada.");
+				}
+
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 }

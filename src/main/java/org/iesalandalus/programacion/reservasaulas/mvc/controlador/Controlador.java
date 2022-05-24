@@ -56,9 +56,8 @@ public class Controlador {
 
 	public Aula buscarAula(Aula aula) {
 		
-		modelo.buscarAula(aula);
+		return modelo.buscarAula(aula);
 
-		return aula;
 	}
 
 	public Profesor buscarProfesor(Profesor profesor) {

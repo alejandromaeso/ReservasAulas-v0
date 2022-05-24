@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -35,6 +36,10 @@ public class Permanencia {
 	private void setDia(LocalDate dia) {
 		if(dia == null) {
 			throw new NullPointerException("ERROR: El día de una permanencia no puede ser nulo.");
+		}
+		LocalDate fechaActual = LocalDate.now();
+		if(dia.compareTo(fechaActual) < 0) {
+			throw new IllegalArgumentException("ERROR: No puedes introducir una fecha anterior a la actual.");
 		}
 		this.dia = dia;
 	}

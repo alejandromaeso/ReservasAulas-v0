@@ -73,7 +73,7 @@ public enum Opcion {
 			vista.listarReservaPermanencia();
 		}
 	},
-	
+
 	CONSULTAR_DISPONIBILIDAD("Consultar disponibilidad") {
 		public void ejecutar() {
 			vista.consultarDisponibilidad();
@@ -84,39 +84,39 @@ public enum Opcion {
 			vista.salir();
 		}
 	};
-	
+
 	private String mensajeAMostrar;
 	private static Vista vista;
-	
+
 	private Opcion(String mensajeAMostrar) {
 		this.mensajeAMostrar = mensajeAMostrar;
 	}
-	
+
 	public abstract void ejecutar() throws OperationNotSupportedException;
-	
+
 	public static void setVista(Vista vista) {
 		if (vista == null) {
 			throw new NullPointerException("ERROR: La vista no pueda ser nula.");
 		}
 		Opcion.vista = vista;
 	}
-	
+
 	public static Opcion getOpcionSegunOrdinal(int ordinal) {
 		if (!esOrdinalValido(ordinal)) {
 			throw new IllegalArgumentException("Ordinal de la opción no válido");
 		}
 		return values()[ordinal];
 	}
-	
+
 	public static boolean esOrdinalValido(int ordinal) {
 		return (ordinal >= 0 && ordinal <= values().length - 1);
 	}
-	
+
 	public String getMensaje() {
-		
+
 		return mensajeAMostrar;
 	}
-		
+
 	@Override
 	public String toString() {
 		return String.format("%d.- %s", ordinal(), mensajeAMostrar);
